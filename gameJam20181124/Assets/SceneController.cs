@@ -7,6 +7,8 @@ public class SceneController : MonoBehaviour {
     [SerializeField] VoiceController voiceController;
     public bool flag;
     public int score = 0;
+    [SerializeField] GameObject bra;
+    bool braFlag = true;
     [SerializeField] GameObject[] deleteAtEnd;
 	// Use this for initialization
 	void Start () {
@@ -30,7 +32,12 @@ public class SceneController : MonoBehaviour {
             score++;
             flag = false;
         }
-        if(Time.timeSinceLevelLoad > 105)
+        if (Time.timeSinceLevelLoad > 71 && braFlag)
+        {
+            braFlag = false;
+            bra.SetActive(false);
+        }
+            if (Time.timeSinceLevelLoad > 105)
         {
             for(int i=0;i<deleteAtEnd.Length; i++)
             {

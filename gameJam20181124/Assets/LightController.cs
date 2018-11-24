@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LightController : MonoBehaviour {
     Light light;
+    [SerializeField] DopeController dope;
     public bool flash;
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class LightController : MonoBehaviour {
         {
             if (Time.timeSinceLevelLoad < 30)
             {
+                dope.factor = 0;
                 light.intensity = 0;
                 yield return new WaitForSeconds(0.5f);
                 light.intensity = 1;
@@ -34,6 +36,7 @@ public class LightController : MonoBehaviour {
             }
             else if (Time.timeSinceLevelLoad < 45)
             {
+                dope.factor = 0.2f;
                 light.intensity = 0;
                 yield return new WaitForSeconds(0.48f);
                 light.intensity = 2;
@@ -58,18 +61,11 @@ public class LightController : MonoBehaviour {
             }
             else if (Time.timeSinceLevelLoad < 105)
             {
+                dope.factor = 5f;
                 yield return new WaitForSeconds(0.05f);
                 light.intensity = 0;
                 yield return new WaitForSeconds(0.05f);
                 light.intensity = 3;
-
-            }
-            else if (Time.timeSinceLevelLoad < 105)
-            {
-                yield return new WaitForSeconds(0.5f);
-                light.intensity = 0;
-                yield return new WaitForSeconds(0.5f);
-                light.intensity = 2;
 
             }
             else
